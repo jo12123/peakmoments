@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Connecting TikTok</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Connecting your TikTok account…</h1>
+  <p>You are being sent back to the Peak Moments dashboard on your own computer.
+     If nothing happens, make sure the dashboard is running, then <a id="go" href="#">continue</a>.</p>
+</main>
+<script>
+  // TikTok only allows https redirect URIs, so this page forwards the one-time sign-in code
+  // to the dashboard running locally. The code is useless without the app secret, which never leaves that computer.
+  (function () {
+    var target = "http://localhost:8000/api/oauth/tiktok/callback" + window.location.search;
+    document.getElementById("go").href = target;
+    window.location.replace(target);
+  })();
+</script>
+</body>
+</html>
